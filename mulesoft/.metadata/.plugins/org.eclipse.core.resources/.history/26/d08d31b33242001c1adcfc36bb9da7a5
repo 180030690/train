@@ -1,0 +1,45 @@
+package mulesoft;
+import java.sql.*;
+import java.util.Scanner;
+public class mulesoft {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      Connection con=DriverManager.getConnection("jdbc:sqlite:movies.db");
+	      if(con!=null)
+	      {
+	        System.out.println("Connected\n");
+	      }
+	      Statement stmt=con.createStatement();
+	      //int n=stmt.executeUpdate("create table movie(pmovie text primary key,pactor text,pactress text,pyor int,pdirector text)");
+	      //System.out.println("Table created");
+	      PreparedStatement pstmt=con.prepareStatement("insert into movies values(?,?,?,?,?)");
+	      System.out.println("Enter Movie name");
+	      String pmovie=sc.next();
+	      System.out.println("Enter actor name");
+	      String pactor=sc.next();
+	      System.out.println("Enter actress name");
+	      String pactress=sc.next();
+	      System.out.println("Enter Year name");
+	      int pyor=sc.nextInt();
+	      System.out.println("Enter Director name");
+	      String pdirector=sc.next();
+	      pstmt.setString(1,pmovie);
+	      pstmt.setString(2,pactor);
+	      pstmt.setString(3,pactress);
+	      pstmt.setInt(4,pyor);
+	      pstmt.setString(5,pdirector);
+	      int n=pstmt.executeUpdate();
+	      System.out.println(n);
+	    }
+	    catch(Exception e)
+	    {
+	      System.out.println(e);
+	    }
+
+	}
+
+}

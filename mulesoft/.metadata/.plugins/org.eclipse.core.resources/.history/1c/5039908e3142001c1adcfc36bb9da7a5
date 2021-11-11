@@ -1,0 +1,25 @@
+package mulesoft;
+import java.sql.*;
+import java.util.Scanner;
+public class mulesoft {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      Connection con=DriverManager.getConnection("jdbc:sqlite:movies.db");
+	      if(con!=null)
+	      {
+	        System.out.println("Connected\n\n");
+	      }
+	  
+	    }
+	    catch(Exception e)
+	    {
+	      System.out.println(e);
+	    }
+
+	}
+
+}
